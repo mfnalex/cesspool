@@ -1,0 +1,15 @@
+plugins {
+    id("cesspool-java-conventions")
+    id("cesspool-spigot-api-dependency")
+}
+
+repositories {
+    maven {
+        name = "extendedclip"
+        url = "https://repo.extendedclip.com/content/repositories/placeholderapi/"
+    }
+}
+
+dependencies {
+    compileOnly "me.clip:placeholderapi:2.11.3"
+}

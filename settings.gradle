@@ -1,2 +1,4 @@
 rootProject.name = 'cesspool'
 
+include("papi-replacer")
+include("yaml-commands")

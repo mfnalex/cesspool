@@ -1,7 +1,5 @@
-package com.jeff_media.cesspoll.yamlcommands;
+package com.jeff_media.cesspool.yamlcommands;
 
-import com.jeff_media.cesspool.yamlcommands.CommandList;
-import com.jeff_media.cesspool.yamlcommands.CommandSenderType;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -10,7 +8,6 @@ import org.junit.jupiter.api.TestInstance;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

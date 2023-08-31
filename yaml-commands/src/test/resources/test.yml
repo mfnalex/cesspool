@@ -1,0 +1,6 @@
+say-hi: "say hi"
+say-hi-as-list:
+  - say hi
+say-hi-as-map:
+  command: "say hi"
+  sender: "console"

@@ -4,5 +4,5 @@ plugins {
 }
 
 dependencies {
-    compileOnly(project(":papi-replacer"))
+    compileOnlyApi(project(":papi-replacer"))
 }

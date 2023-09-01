@@ -1,3 +1,5 @@
+println("java conventions start")
+
 plugins {
     `java-library`
     `maven-publish`
@@ -46,3 +48,5 @@ publishing {
         }
     }
 }
+
+println("java conventions done")

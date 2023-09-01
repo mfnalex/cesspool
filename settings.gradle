@@ -10,6 +10,6 @@ plugins {
 
 rootProject.name = "cesspool"
 
-include("aggregator")
+//include("aggregator")
 include("papi-replacer")
 include("yaml-commands")

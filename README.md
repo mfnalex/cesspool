@@ -1,0 +1,1 @@
+Modular library for spigot plugins. You can depend on each module individually.

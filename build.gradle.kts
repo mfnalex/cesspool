@@ -1,7 +1,9 @@
 plugins {
-    `java-library`
-    `maven-publish`
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+//    `java-library`
+//    `maven-publish`
+//    id("cesspool-java-conventions")
+//    id("io.freefair.aggregate-javadoc") version "8.3"
+    id("io.freefair.aggregate-javadoc") version "8.3"
 }
 
 allprojects {
@@ -21,15 +23,15 @@ allprojects {
     }
 }
 
-tasks.shadowJar {
-    archiveClassifier.set("")
-}
-
-tasks.build {
-    dependsOn(tasks.shadowJar)
-}
-
 dependencies {
-    implementation(project(":papi-replacer"))
-    implementation(project(":yaml-commands"))
+    // Option 1: List projects explicitly
+    javadoc(project(":papi-replacer"))
+    javadoc(project(":yaml-commands"))
+
+    //Option 2: Add all java projects automatically
+//    rootProject.subprojects.forEach { subproject ->
+//        subproject.plugins.withId("java") {
+//            javadoc(subproject)
+//        }
+//    }
 }

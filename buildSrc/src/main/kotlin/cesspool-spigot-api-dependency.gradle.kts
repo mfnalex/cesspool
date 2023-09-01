@@ -1,5 +1,5 @@
 plugins {
-    `java-library`
+    id("cesspool-java-conventions")
 }
 
 dependencies {

@@ -1,6 +1,5 @@
 package com.jeff_media.cesspool.papireplacer;
 
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

@@ -7,8 +7,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+/**
+ * Represents a list of commands to be executed
+ */
 public class CommandList implements PlayerExecutable {
 
+    /**
+     * An empty command list
+     */
     public static final CommandList EMPTY = new CommandList(Collections.emptyList());
 
     @NotNull
@@ -22,6 +28,12 @@ public class CommandList implements PlayerExecutable {
         return new CommandList(Collections.singletonList(SingleCommand.of(command, type)));
     }
 
+    /**
+     * Creates a new CommandList from a path in a ConfigurationSection. The object at the path can be a String, a ConfigurationSection, or a List of Strings or ConfigurationSections.
+     * @param config ConfigurationSection to read from
+     * @param path Path to read from
+     * @return CommandList
+     */
     @SuppressWarnings("unchecked")
     public static CommandList of(@NotNull final ConfigurationSection config, @NotNull final String path) {
         Objects.requireNonNull(config, "Config cannot be null");

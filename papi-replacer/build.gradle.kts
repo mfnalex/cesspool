@@ -3,6 +3,10 @@ plugins {
     id("cesspool-spigot-api-dependency")
 }
 
+repositories {
+
+}
+
 dependencies {
-    compileOnlyApi(project(":papi-replacer"))
+    compileOnly("me.clip:placeholderapi:2.11.3")
 }

@@ -1,5 +1,6 @@
 package com.jeff_media.cesspool.yamlcommands;
 
+import com.jeff_media.cesspool.papireplacer.PapiReplacer;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
@@ -7,10 +8,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 class SingleCommand implements PlayerExecutable {
 
@@ -29,19 +27,19 @@ class SingleCommand implements PlayerExecutable {
     }
 
     static SingleCommand of(@NotNull String command, @NotNull CommandSenderType commandSenderType) {
-        return new SingleCommand(List.of(command), commandSenderType);
+        return new SingleCommand(Collections.singletonList(command), commandSenderType);
     }
 
     static SingleCommand of(@NotNull Map<String, Object> map) {
         List<String> commands = new ArrayList<>();
 
         Object command = map.get("command");
-        if (command instanceof String string) {
-            commands.add(string);
-        } else if (command instanceof List<?> list) {
-            for (Object item : list) {
-                if (item instanceof String string) {
-                    commands.add(string);
+        if (command instanceof String) {
+            commands.add((String) command);
+        } else if (command instanceof List<?>) {
+            for (Object item : (List<?>) command) {
+                if (item instanceof String) {
+                    commands.add((String) item);
                 } else {
                     throw new IllegalArgumentException("Invalid command: " + item);
                 }
@@ -105,7 +103,7 @@ class SingleCommand implements PlayerExecutable {
         }
         boolean success = true;
         for (String command : command) {
-            success &= Bukkit.dispatchCommand(sender, command);
+            success &= Bukkit.dispatchCommand(sender, PapiReplacer.apply(command, player));
         }
         return success;
     }

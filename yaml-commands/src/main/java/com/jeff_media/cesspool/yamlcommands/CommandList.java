@@ -5,12 +5,11 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class CommandList implements PlayerExecutable {
+
+    public static final CommandList EMPTY = new CommandList(Collections.emptyList());
 
     @NotNull
     private final List<SingleCommand> commands;
@@ -20,7 +19,7 @@ public class CommandList implements PlayerExecutable {
     }
 
     static CommandList of(@NotNull String command, @NotNull CommandSenderType type) {
-        return new CommandList(List.of(SingleCommand.of(command, type)));
+        return new CommandList(Collections.singletonList(SingleCommand.of(command, type)));
     }
 
     @SuppressWarnings("unchecked")
@@ -35,12 +34,12 @@ public class CommandList implements PlayerExecutable {
         } else if (config.isList(path)) {
             List<?> list = Objects.requireNonNull(config.getList(path));
             for (Object item : list) {
-                if (item instanceof String string) {
-                    commands.add(SingleCommand.of(Objects.requireNonNull(string)));
-                } else if (item instanceof ConfigurationSection section) {
-                    commands.add(SingleCommand.of(Objects.requireNonNull(section)));
-                } else if (item instanceof Map<?, ?> map) {
-                    commands.add(SingleCommand.of((Map<String, Object>) Objects.requireNonNull(map)));
+                if (item instanceof String) {
+                    commands.add(SingleCommand.of(Objects.requireNonNull((String) item)));
+                } else if (item instanceof ConfigurationSection) {
+                    commands.add(SingleCommand.of(Objects.requireNonNull((ConfigurationSection) item)));
+                } else if (item instanceof Map<?, ?>) {
+                    commands.add(SingleCommand.of((Map<String, Object>) Objects.requireNonNull(item)));
                 } else {
                     throw new IllegalArgumentException("Invalid command list: " + config.get(path));
                 }

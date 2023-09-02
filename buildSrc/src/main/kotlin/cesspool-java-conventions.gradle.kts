@@ -1,5 +1,3 @@
-println("java conventions start")
-
 plugins {
     `java-library`
     `maven-publish`
@@ -17,7 +15,7 @@ dependencies {
     // api = <scope>compile</scope>
     // compileOnlyApi = <scope>compile</scope>
     // compileOnly = doesn't appear in pom at all
-    implementation("org.jetbrains:annotations:24.0.1")
+    compileOnly("org.jetbrains:annotations:24.0.1")
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
@@ -48,5 +46,3 @@ publishing {
         }
     }
 }
-
-println("java conventions done")

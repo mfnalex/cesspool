@@ -2,8 +2,7 @@ plugins {
     `java-library`
     `maven-publish`
     id("cesspool-java-conventions")
-//    id("io.freefair.aggregate-javadoc") version "8.3"
-//    id("io.freefair.aggregate-javadoc") version "8.3"
+    id("cesspool-javadoc-conventions")
 }
 
 allprojects {
@@ -24,19 +23,16 @@ allprojects {
 }
 
 dependencies {
-    // Option 1: List projects explicitly
-    api(project(":papi-replacer"))
-    api(project(":yaml-commands"))
-
-    //Option 2: Add all java projects automatically
-//    rootProject.subprojects.forEach { subproject ->
-//        subproject.plugins.withId("java") {
-//            javadoc(subproject)
-//        }
-//    }
+    // Depend on all subprojects that use java
+    rootProject.subprojects.forEach { subproject ->
+        subproject.plugins.withId("java") {
+            api(subproject)
+        }
+    }
 }
 
-tasks.register<Javadoc>("allJavadoc") {
+
+val allJavadoc = tasks.register<Javadoc>("allJavadoc") {
     description = "Generates javadoc for all projects"
     group = "documentation"
 
@@ -48,4 +44,14 @@ tasks.register<Javadoc>("allJavadoc") {
             }
         }
     }
-}
+
+    //finalizedBy("fixAllJavadocs")
+}.get()
+
+
+//tasks.register<FixJavadocTask>("fixAllJavadocs") {
+//    description = "Fixes double javadoc annotations"
+//    group = "documentation"
+//
+//    directory.set(allJavadoc.destinationDir)
+//}

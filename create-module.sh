@@ -5,7 +5,7 @@ err_exit() {
     exit 1
 }
 
-cd "$(dirname "$0")/.." || err_exit "Failed to cd into $(dirname "$0")"
+cd "$(dirname "$0")" || err_exit "Failed to cd into $(dirname "$0")"
 name="$1"
 mkdir -p "$name/src/main/java/com/jeff_media/cesspool" || err_exit "Failed to create directory $name/src/main/java/com/jeff_media/cesspool"
 

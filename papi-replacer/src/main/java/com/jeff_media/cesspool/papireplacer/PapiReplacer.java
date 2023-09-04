@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,8 +47,9 @@ public class PapiReplacer {
      * @param player Player to apply placeholders for
      * @return String with placeholders applied
      */
-    @NotNull
+
     @Contract(pure = true, value = "_, _ -> new")
+    @NotNull
     public static String apply(@NotNull String string, @Nullable OfflinePlayer player) {
         if (isPapiEnabled()) {
             return doApplyPapi(string, player);
@@ -56,6 +58,7 @@ public class PapiReplacer {
         }
     }
 
+
     /**
      * Applies PlaceholderAPI placeholders to a list of strings
      *
@@ -63,8 +66,8 @@ public class PapiReplacer {
      * @param player  Player to apply placeholders for
      * @return Unmodifiable list of strings with placeholders applied
      */
-    @NotNull
     @Contract(pure = true, value = "_, _ -> new")
+    @NotNull
     public static List<@NotNull String> apply(@NotNull List<@NotNull String> strings, @Nullable OfflinePlayer player) {
         if (isPapiEnabled()) {
             return doApplyPapi(strings, player);
@@ -72,5 +75,4 @@ public class PapiReplacer {
             return doApplyDefaults(strings, player);
         }
     }
-
 }

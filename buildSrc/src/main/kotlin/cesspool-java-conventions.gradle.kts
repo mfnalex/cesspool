@@ -43,6 +43,8 @@ publishing {
     publications {
         create<MavenPublication>("artifact") {
             from(components["java"])
+//            from(components["javadocJar"])
+//            from(components["sourcesJar"])
         }
     }
 }

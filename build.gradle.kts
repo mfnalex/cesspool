@@ -1,13 +1,16 @@
+import com.jeff_media.fixjavadoc.FixJavadoc
+
 plugins {
     `java-library`
     `maven-publish`
     id("cesspool-java-conventions")
     id("cesspool-javadoc-conventions")
+    id("com.jeff-media.fix-javadoc-plugin") version("1.11")
 }
 
 allprojects {
     repositories {
-        mavenCentral()
+        //mavenCentral()
         gradlePluginPortal()
 
         maven {
@@ -48,10 +51,10 @@ val allJavadoc = tasks.register<Javadoc>("allJavadoc") {
     //finalizedBy("fixAllJavadocs")
 }.get()
 
-
-//tasks.register<FixJavadocTask>("fixAllJavadocs") {
-//    description = "Fixes double javadoc annotations"
-//    group = "documentation"
-//
-//    directory.set(allJavadoc.destinationDir)
-//}
+allprojects {
+    tasks.withType<FixJavadoc>().configureEach {
+        newLineOnMethodParameters.set(true)
+        keepOriginal.set(true)
+        hideExternalLinksIcon.set(true)
+    }
+}

@@ -3,7 +3,6 @@ package com.jeff_media.cesspool.reflection;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
-import com.jeff_media.cesspool.Cesspool;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -190,7 +189,7 @@ public final class ReflectionUtils {
             final Field field = getField(clazz, fieldName);
             Objects.requireNonNull(field, "Cannot find field " + fieldName + " in class " + clazz.getName()).set(object, value);
         } catch (final IllegalAccessException e) {
-            Cesspool.logger().log(Level.SEVERE, "Failed to set field " + fieldName + " on " + clazz.getName(), e);
+            //Cesspool.logger().log(Level.SEVERE, "Failed to set field " + fieldName + " on " + clazz.getName(), e);
         }
     }
 

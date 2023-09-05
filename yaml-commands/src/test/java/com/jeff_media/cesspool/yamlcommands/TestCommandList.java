@@ -1,5 +1,7 @@
 package com.jeff_media.cesspool.yamlcommands;
 
+import com.jeff_media.cesspool.config.CommandList;
+import com.jeff_media.cesspool.config.CommandSenderType;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

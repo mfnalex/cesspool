@@ -5,23 +5,14 @@ plugins {
     `maven-publish`
     id("cesspool-java-conventions")
     id("cesspool-javadoc-conventions")
-    id("com.jeff-media.fix-javadoc-plugin") version("1.11")
+    id("com.jeff-media.fix-javadoc-plugin") version("1.17")
 }
 
 allprojects {
     repositories {
         //mavenCentral()
-        gradlePluginPortal()
+        //gradlePluginPortal()
 
-        maven {
-            name = "spigotmc"
-            url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
-        }
-
-        maven {
-            name = "extendedclip"
-            url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
-        }
     }
 }
 

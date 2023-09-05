@@ -1,4 +1,4 @@
-package com.jeff_media.cesspool.papireplacer;
+package com.jeff_media.cesspool;
 
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;

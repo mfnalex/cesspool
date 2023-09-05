@@ -1,6 +1,7 @@
 package com.jeff_media.cesspool;
 
 
+import org.bukkit.Color;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -19,7 +20,7 @@ public class Cesspool {
      * Initializes cesspool. Must be called before using any other methods.
      * @param plugin Plugin
      */
-    public static void init(Plugin plugin) {
+    public static void init(@NotNull Plugin plugin) {
         Cesspool.plugin = plugin;
         Cesspool.logger = plugin.getLogger();
     }
@@ -28,18 +29,20 @@ public class Cesspool {
      * Gets the Plugin
      * @return Plugin
      */
+    @NotNull
     public static Plugin plugin() {
         if (plugin != null) {
             return plugin;
         }
 
-        return plugin = getFromPluginFromJavaPluginByClass();
+        return plugin = getPluginByProvidingClass();
     }
 
     /**
      * Gets the Logger
      * @return Logger
      */
+    @NotNull
     public static Logger logger() {
         if(logger != null) {
             return logger;
@@ -53,7 +56,7 @@ public class Cesspool {
      * @return Plugin
      * @throws IllegalStateException when called during static initialization
      */
-    private static Plugin getFromPluginFromJavaPluginByClass() throws IllegalStateException {
+    private static Plugin getPluginByProvidingClass() throws IllegalStateException {
         try {
             return JavaPlugin.getProvidingPlugin(Cesspool.class);
         } catch (IllegalStateException ex) {

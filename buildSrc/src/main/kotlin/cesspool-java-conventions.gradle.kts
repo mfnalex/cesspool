@@ -3,7 +3,30 @@ plugins {
     `maven-publish`
 }
 
-group = "com.jeff-media.cesspool"
+/**
+ * Returns a proper group ID for this subproject, e.g. "com.jeff-media.cesspool.nms" for nms/generic
+ */
+fun getGroupId(): String {
+    println("Getting group id for $projectDir")
+    var groupId = "com.jeff-media.cesspool"
+    val rootProjectDir = rootDir
+    println("Root project dir: $rootProjectDir")
+    val myParentDir = projectDir.parentFile
+    println("My parent dir: $myParentDir")
+    if(rootProjectDir == myParentDir) {
+        return groupId
+    }
+    val relativeDir = myParentDir.relativeTo(rootProjectDir)
+    println("Relative dir: $relativeDir")
+    val relativeGroupId = relativeDir.path.replace(File.separatorChar, '.')
+    println("Relative group id: $relativeGroupId")
+    if(relativeGroupId.isNotEmpty()) {
+        groupId += ".$relativeGroupId"
+    }
+    return groupId
+}
+
+group = getGroupId() //"com.jeff-media.cesspool"
 version = "1.0-SNAPSHOT"
 
 repositories {

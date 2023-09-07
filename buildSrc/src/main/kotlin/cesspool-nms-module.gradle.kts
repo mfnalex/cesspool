@@ -13,5 +13,3 @@ repositories {
 dependencies {
     api(project(":nms:generic"))
 }
-
-group = "$group.nms.versions"

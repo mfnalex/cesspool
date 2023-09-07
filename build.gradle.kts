@@ -19,7 +19,7 @@ dependencies {
 }
 
 
-val allJavadoc = tasks.register<Javadoc>("allJavadoc") {
+tasks.register<Javadoc>("allJavadoc") {
     description = "Generates javadoc for all projects"
     group = "documentation"
 
@@ -31,14 +31,10 @@ val allJavadoc = tasks.register<Javadoc>("allJavadoc") {
             }
         }
     }
-
-    //finalizedBy("fixAllJavadocs")
-}.get()
+}
 
 allprojects {
     tasks.withType<FixJavadoc>().configureEach {
-        newLineOnMethodParameters.set(true)
-        keepOriginal.set(false)
         hideExternalLinksIcon.set(true)
     }
 }

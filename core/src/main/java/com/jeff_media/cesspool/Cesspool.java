@@ -1,6 +1,8 @@
 package com.jeff_media.cesspool;
 
 
+import com.jeff_media.cesspool.nms.aggregator.NMSHandlerFactory;
+import com.jeff_media.cesspool.nms.generic.NMSHandler;
 import org.bukkit.Color;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,6 +20,8 @@ public class Cesspool {
     private static Plugin plugin;
     @NotNull
     private static CesspoolLogger logger = CesspoolLogger.getLogger(Cesspool.class);
+    @Nullable
+    private static NMSHandler nmsHandler;
 
     /**
      * Initializes cesspool. Must be called before using any other methods.
@@ -26,6 +30,7 @@ public class Cesspool {
     public static void init(@NotNull Plugin plugin) {
         Cesspool.plugin = plugin;
         CesspoolLogger.setParentLogger(plugin.getLogger());
+        Cesspool.nmsHandler = NMSHandlerFactory.getNMSHandler(); // TODO: Make this configurable
     }
 
     /**
@@ -54,6 +59,11 @@ public class Cesspool {
             // Code is called from static initializer of this plugin
             throw new IllegalStateException("Cannot get plugin instance by its class during static initialization", ex);
         }
+    }
+
+    @Nullable
+    public static NMSHandler getNMSHandler() {
+        return nmsHandler;
     }
 
 }

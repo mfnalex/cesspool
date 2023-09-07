@@ -12,6 +12,11 @@ import java.util.Objects;
 
 public class McVersion implements Comparable<McVersion> {
 
+    /**
+     * 1.18.1 - added {@link org.bukkit.profile.PlayerProfile}
+     */
+    public static final McVersion V1_18_1 = new McVersion(1, 18, 1);
+
     private static final McVersion CURRENT_VERSION;
     //private static final McVersion v1_17 = new McVersion(1, 17);
 

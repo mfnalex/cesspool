@@ -24,7 +24,7 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
     if(JavaVersion.current() < JavaVersion.VERSION_17) {
-        throw RuntimeException("Java 17 or higher is required")
+        throw RuntimeException("Java 17 or higher is required to build cesspool.")
     }
     /*toolchain {
         languageVersion.set(JavaLanguageVersion.of(8))

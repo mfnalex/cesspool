@@ -5,16 +5,11 @@ plugins {
     `maven-publish`
     id("cesspool-java-conventions")
     id("cesspool-javadoc-conventions")
-    id("com.jeff-media.fix-javadoc-plugin") version("1.17")
+    id("com.jeff-media.fix-javadoc-plugin") version ("1.19")
+    id("io.github.patrick.remapper") version "1.4.0" apply false
 }
 
-allprojects {
-    repositories {
-        //mavenCentral()
-        //gradlePluginPortal()
 
-    }
-}
 
 dependencies {
     // Depend on all subprojects that use java
@@ -45,7 +40,7 @@ val allJavadoc = tasks.register<Javadoc>("allJavadoc") {
 allprojects {
     tasks.withType<FixJavadoc>().configureEach {
         newLineOnMethodParameters.set(true)
-        keepOriginal.set(true)
+        keepOriginal.set(false)
         hideExternalLinksIcon.set(true)
     }
 }

@@ -3,8 +3,3 @@ plugins {
     id("cesspool-javadoc-conventions")
     id("cesspool-spigot-api-dependency")
 }
-
-dependencies {
-    api(project(":shared"))
-    api(project(":core"))
-}

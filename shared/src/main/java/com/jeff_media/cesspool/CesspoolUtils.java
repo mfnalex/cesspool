@@ -23,7 +23,7 @@ public class CesspoolUtils {
      * @return Object
      * @param <T> Type of the object
      */
-    @org.jetbrains.annotations.NotNull
+    @NotNull
     @Contract(value = "null, _ -> fail; _, _ -> param1", pure = true)
     public static  <T> T notNull(@Nullable T object, String name) {
         if(object != null) {
@@ -51,20 +51,20 @@ public class CesspoolUtils {
             return ((World) any).getUID();
         }
 
-        // TODO: Check which version AnimalTamer was added
         if(any instanceof AnimalTamer) {
             return ((AnimalTamer) any).getUniqueId();
         }
-        // TODO: Add McVersion check for PlayerProfile
-        if(any instanceof PlayerProfile) {
-            return ((PlayerProfile) any).getUniqueId();
-        }
-        // TODO: Add McVersion check for AttributeModifier
+
         if(any instanceof AttributeModifier) {
             return ((AttributeModifier) any).getUniqueId();
         }
 
-        return null;
+        if(McVersion.current().isAtLeast(McVersion.V1_18_1)) {
+            if (any instanceof PlayerProfile) {
+                return ((PlayerProfile) any).getUniqueId();
+            }
+        }
 
+        return null;
     }
 }

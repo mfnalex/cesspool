@@ -10,3 +10,5 @@ dependencies {
     api(project(":nms:generic"))
     api(project(":nms:versions:v1.20.1"))
 }
+
+group = "$group.nms"

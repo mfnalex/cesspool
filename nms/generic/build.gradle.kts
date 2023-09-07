@@ -3,3 +3,5 @@ plugins {
     id("cesspool-javadoc-conventions")
     id("cesspool-spigot-api-dependency")
 }
+
+group = "$group.nms"

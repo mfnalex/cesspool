@@ -9,8 +9,6 @@ plugins {
     id("io.github.patrick.remapper") version "1.4.0" apply false
 }
 
-
-
 dependencies {
     // Depend on all subprojects that use java
     rootProject.subprojects.forEach { subproject ->

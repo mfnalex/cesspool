@@ -11,22 +11,7 @@ repositories {
 }
 
 dependencies {
-    //api(project(":shared"))
     api(project(":nms:generic"))
-    //compileOnly("io.github.patrick.remapper")
-    //compileOnly("io.github.patrick-choe:mojang-spigot-remapper:1.4.0")
 }
 
-
-//
-//@Suppress("UNCHECKED_CAST")
-//fun useMojangMaps(spigotVersion: String) {
-//    dependencies {
-//        compileOnly("org.spigotmc:spigot-api:${spigotVersion}-R0.1-SNAPSHOT:remapped-mojang")
-//    }
-//
-//    tasks.getByName("remap").configure<DefaultTask> {
-//        val taskVersionProperty = properties["version"] as Property<String>
-//        taskVersionProperty.set(spigotVersion)
-//    }
-//}
+group = "$group.nms.versions"

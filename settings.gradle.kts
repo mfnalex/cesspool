@@ -1,10 +1,6 @@
 pluginManagement {
     repositories {
         gradlePluginPortal()
-//        /*maven {
-//            url = uri("https://repo.jeff-media.com/public")
-//        }*/
-        mavenLocal()
     }
 }
 
@@ -20,5 +16,5 @@ include("config")
 include("papi-replacer")
 include("yaml-commands")
 include("cooldown")
-include("mcversion")
 include("reflection")
+include("plugin-yml-libraries-loader")

@@ -5,6 +5,7 @@ import org.bukkit.Color;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.logging.Logger;
 
@@ -13,8 +14,10 @@ import java.util.logging.Logger;
  */
 public class Cesspool {
 
+    @Nullable
     private static Plugin plugin;
-    private static Logger logger;
+    @NotNull
+    private static CesspoolLogger logger = CesspoolLogger.getLogger(Cesspool.class);
 
     /**
      * Initializes cesspool. Must be called before using any other methods.
@@ -22,7 +25,7 @@ public class Cesspool {
      */
     public static void init(@NotNull Plugin plugin) {
         Cesspool.plugin = plugin;
-        Cesspool.logger = plugin.getLogger();
+        CesspoolLogger.setParentLogger(plugin.getLogger());
     }
 
     /**
@@ -36,18 +39,6 @@ public class Cesspool {
         }
 
         return plugin = getPluginByProvidingClass();
-    }
-
-    /**
-     * Gets the Logger
-     * @return Logger
-     */
-    @NotNull
-    public static Logger logger() {
-        if(logger != null) {
-            return logger;
-        }
-        return logger = plugin.getLogger();
     }
 
     /**

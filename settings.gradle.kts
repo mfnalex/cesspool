@@ -39,4 +39,5 @@ for(moduleFolder in moduleFolders) {
 
 include("nms:generic")
 include("nms:aggregator")
+// TODO: Loop over the file contents of nms/versions/
 include("nms:versions:v1.20.1")

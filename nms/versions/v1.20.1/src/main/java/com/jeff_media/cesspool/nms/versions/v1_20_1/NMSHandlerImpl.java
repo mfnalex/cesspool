@@ -8,7 +8,13 @@ import org.bukkit.entity.Player;
 
 public class NMSHandlerImpl implements NMSHandler {
 
-    private ServerPlayer nms(Player player) {
+    @Override
+    public String getNMSVersionPackage() {
+        return "v1_20_R1";
+    }
+
+    @Override
+    public ServerPlayer nms(Player player) {
         return ((CraftPlayer)player).getHandle();
     }
 

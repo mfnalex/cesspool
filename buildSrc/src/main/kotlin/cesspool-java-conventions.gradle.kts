@@ -7,26 +7,19 @@ plugins {
  * Returns a proper group ID for this subproject, e.g. "com.jeff-media.cesspool.nms" for nms/generic
  */
 fun getGroupId(): String {
-    println("Getting group id for $projectDir")
-    var groupId = "com.jeff-media.cesspool"
-    val rootProjectDir = rootDir
-    println("Root project dir: $rootProjectDir")
+    val groupId = "com.jeff-media.cesspool"
     val myParentDir = projectDir.parentFile
-    println("My parent dir: $myParentDir")
-    if(rootProjectDir == myParentDir) {
+    if (rootDir == myParentDir) {
         return groupId
     }
-    val relativeDir = myParentDir.relativeTo(rootProjectDir)
-    println("Relative dir: $relativeDir")
-    val relativeGroupId = relativeDir.path.replace(File.separatorChar, '.')
-    println("Relative group id: $relativeGroupId")
-    if(relativeGroupId.isNotEmpty()) {
-        groupId += ".$relativeGroupId"
+    val relativeGroupId = myParentDir.relativeTo(rootDir).path.replace(File.separatorChar, '.')
+    if (relativeGroupId.isEmpty()) {
+        throw RuntimeException("Couldn't determine relative group ID for $projectDir")
     }
-    return groupId
+    return "${groupId}.${relativeGroupId}"
 }
 
-group = getGroupId() //"com.jeff-media.cesspool"
+group = getGroupId()
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -46,12 +39,9 @@ dependencies {
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
-    if(JavaVersion.current() < JavaVersion.VERSION_17) {
+    if (JavaVersion.current() < JavaVersion.VERSION_17) {
         throw RuntimeException("Java 17 or higher is required to build cesspool.")
     }
-    /*toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
-    }*/
 }
 
 tasks.named<Test>("test") {
@@ -66,8 +56,6 @@ publishing {
     publications {
         create<MavenPublication>("artifact") {
             from(components["java"])
-//            from(components["javadocJar"])
-//            from(components["sourcesJar"])
         }
     }
 }

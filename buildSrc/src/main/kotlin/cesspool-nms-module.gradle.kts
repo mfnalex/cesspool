@@ -12,4 +12,5 @@ repositories {
 
 dependencies {
     api(project(":nms:generic"))
+    api(project(":shared"))
 }

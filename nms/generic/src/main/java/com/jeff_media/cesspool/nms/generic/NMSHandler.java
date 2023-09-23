@@ -5,19 +5,6 @@ import org.bukkit.entity.Player;
 public interface NMSHandler {
 
     /**
-     * Gets the NMS version package, e.g. "v1_20_R1"
-     * @return NMS version package
-     */
-    String getNMSVersionPackage();
-
-    /**
-     * Turns a Bukkit Player into an NMS ServerPlayer
-     * @param player Bukkit Player
-     * @return NMS ServerPlayer
-     */
-    Object nms(Player player);
-
-    /**
      * Plays the totem animation for the given player
      * @param player Player
      */

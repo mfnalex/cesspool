@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 public class Cesspool {
 
     @Nullable
-    private static Plugin plugin;
+    private static JavaPlugin plugin;
     @NotNull
     private static final CesspoolLogger LOG = CesspoolLogger.getLogger(Cesspool.class);
 
@@ -23,7 +23,7 @@ public class Cesspool {
      * Initializes cesspool. Must be called before using any other methods.
      * @param plugin Plugin
      */
-    public static void init(@NotNull Plugin plugin) {
+    public static void init(@NotNull JavaPlugin plugin) {
         Cesspool.plugin = plugin;
         CesspoolLogger.setParentLogger(plugin.getLogger());
     }
@@ -33,7 +33,7 @@ public class Cesspool {
      * @return Plugin
      */
     @NotNull
-    public static Plugin plugin() {
+    public static JavaPlugin plugin() {
         if (plugin != null) {
             return plugin;
         }
@@ -47,7 +47,7 @@ public class Cesspool {
      * @return Plugin
      * @throws IllegalStateException when called during static initialization
      */
-    private static Plugin getPluginByProvidingClass() throws IllegalStateException {
+    private static JavaPlugin getPluginByProvidingClass() throws IllegalStateException {
         try {
             return JavaPlugin.getProvidingPlugin(Cesspool.class);
         } catch (IllegalStateException ex) {

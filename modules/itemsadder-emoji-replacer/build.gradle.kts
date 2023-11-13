@@ -10,5 +10,5 @@ repositories {
 }
 
 dependencies {
-    compileOnly("com.github.LoneDev6:API-ItemsAdder:3.5.0c-r5")
+    compileOnly("com.github.LoneDev6:API-ItemsAdder:3.6.1")
 }

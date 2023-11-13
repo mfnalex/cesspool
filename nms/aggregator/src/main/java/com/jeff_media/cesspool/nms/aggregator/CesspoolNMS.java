@@ -6,6 +6,9 @@ import com.jeff_media.cesspool.exceptions.NMSNotSupportedException;
 import com.jeff_media.cesspool.nms.generic.NMSHandler;
 import com.jeff_media.cesspool.reflection.ReflectionUtils;
 
+/**
+ * Provides access to the NMS handler for the current server version
+ */
 public class CesspoolNMS {
 
     private static final CesspoolLogger LOG = CesspoolLogger.getLogger(CesspoolNMS.class);
@@ -15,6 +18,10 @@ public class CesspoolNMS {
     private static boolean hasTriedCreatingNmsHandler = false;
     private static NMSHandler nmsHandler;
 
+    /**
+     * Enables NMS support for the current server version
+     * @return True if NMS support was enabled, false otherwise (because the current NMS version is not supported)
+     */
     public static boolean enableNMS() {
         if(nmsHandler != null) {
             return true;
@@ -25,6 +32,11 @@ public class CesspoolNMS {
         return nmsHandler != null;
     }
 
+    /**
+     * Gets the NMS handler for the current server version
+     * @return NMS handler
+     * @throws NMSNotSupportedException if the current NMS version is not supported
+     */
     public static NMSHandler getNMSHandler() throws NMSNotSupportedException {
         if(nmsHandler == null && !hasTriedCreatingNmsHandler) {
             LOG.warning("NMS support was not enabled yet, enabling it lazily now. Avoid this by calling CesspoolNMS.enableNMS() during plugin initialization.");

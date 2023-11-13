@@ -13,4 +13,6 @@ tasks.withType<Javadoc> {
         "https://hub.spigotmc.org/javadocs/spigot/",
         "https://javadoc.io/doc/org.jetbrains/annotations/24.0.1"
     )
+    options.encoding = "UTF-8"
+    exclude("**/nms/versions/**")
 }

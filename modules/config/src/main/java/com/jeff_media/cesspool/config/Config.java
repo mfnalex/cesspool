@@ -9,7 +9,7 @@ import java.io.*;
 import java.util.Objects;
 import java.util.logging.Level;
 
-import static com.jeff_media.cesspool.CesspoolUtils.notNull;
+import static com.jeff_media.cesspool.Validate.*;
 
 /**
  * Represents a configuration that automatically loads the default values from the plugin's resources, if it exists.
@@ -29,8 +29,8 @@ public class Config extends YamlConfiguration {
      * @param fileName the file name of this config
      */
     public Config(@NotNull final Plugin plugin, @NotNull final String fileName) {
-        this.plugin = notNull(plugin, "plugin");
-        this.filename = notNull(fileName, "fileName");
+        this.plugin = paramNotNull(plugin, "plugin");
+        this.filename = paramNotNull(fileName, "fileName");
         file = new File(plugin.getDataFolder(), fileName);
         loadDefaults();
         reload();

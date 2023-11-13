@@ -1,12 +1,11 @@
 package com.jeff_media.cesspool;
 
 
-import com.jeff_media.cesspool.exceptions.NMSNotSupportedException;
-import com.jeff_media.cesspool.nms.generic.NMSHandler;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import static com.jeff_media.cesspool.Validate.paramNotNull;
 
 /**
  * Main class of Cesspool. Provides access to the plugin instance and logger.
@@ -24,6 +23,7 @@ public class Cesspool {
      * @param plugin Plugin
      */
     public static void init(@NotNull JavaPlugin plugin) {
+        paramNotNull(plugin, "plugin");
         Cesspool.plugin = plugin;
         CesspoolLogger.setParentLogger(plugin.getLogger());
     }

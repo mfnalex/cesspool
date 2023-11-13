@@ -1,4 +1,4 @@
-package com.jeff_media.cesspool;
+package com.jeff_media.cesspool.textformatter;
 
 /*
  * Copyright (c) 2023. JEFF Media GbR / mfnalex et al.
@@ -19,6 +19,8 @@ package com.jeff_media.cesspool;
 
 
 import java.util.Objects;
+
+import com.jeff_media.cesspool.Validate;
 import org.bukkit.ChatColor;
 
 /**

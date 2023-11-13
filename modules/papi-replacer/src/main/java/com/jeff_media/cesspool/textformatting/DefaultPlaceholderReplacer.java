@@ -1,4 +1,4 @@
-package com.jeff_media.cesspool;
+package com.jeff_media.cesspool.textformatting;
 
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;

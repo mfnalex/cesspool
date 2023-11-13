@@ -1,4 +1,4 @@
-package com.jeff_media.cesspool;
+package com.jeff_media.cesspool.textformatting;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;

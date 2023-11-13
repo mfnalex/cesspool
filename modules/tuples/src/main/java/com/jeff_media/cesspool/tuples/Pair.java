@@ -11,7 +11,10 @@ import java.util.Objects;
  */
 public class Pair <A,B> extends Unit<A> {
 
-    @Nullable private B second;
+    /**
+     * Second element
+     */
+    protected @Nullable B second;
 
     /**
      * Creates a new Pair with the given first and second elements and mutability
@@ -32,6 +35,10 @@ public class Pair <A,B> extends Unit<A> {
         this(true, first, second);
     }
 
+    /**
+     * Gets the second element
+     * @return Second element
+     */
     @Nullable
     public final B getSecond() {
         return second;

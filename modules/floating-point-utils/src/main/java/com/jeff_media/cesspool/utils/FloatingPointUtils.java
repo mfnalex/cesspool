@@ -97,6 +97,9 @@ public final class FloatingPointUtils {
 
     /**
      * Checks if the given number is zero. Null values will be treated as zero
+     *
+     * @param number Number to check
+     * @return Whether the number is zero
      */
     @Contract("null -> true")
     public static boolean isZero(@Nullable final Number number) {
@@ -125,6 +128,9 @@ public final class FloatingPointUtils {
 
     /**
      * Checks if the given number is zero or negative. Null values will be treated as zero
+     *
+     * @param number Number to check
+     * @return Whether the number is zero or negative
      */
     @Contract("null -> true")
     public static boolean isZeroOrNegative(@Nullable final Number number) {
@@ -133,9 +139,10 @@ public final class FloatingPointUtils {
 
     /**
      * Checks if the given number is between the given min and max values, inclusive
-     * @param number    Number to check
-     * @param min      Minimum value
-     * @param max     Maximum value
+     *
+     * @param number Number to check
+     * @param min    Minimum value
+     * @param max    Maximum value
      * @return Whether the number is between the given min and max values, inclusive
      */
     public static boolean isInbetweenInclusive(final int number, final int min, final int max) {
@@ -144,6 +151,9 @@ public final class FloatingPointUtils {
 
     /**
      * Checks if a given String is an Integer.
+     *
+     * @param text Text to check
+     * @return Whether the given String is an Integer
      */
     public boolean isInteger(final String text) {
         try {
@@ -156,6 +166,9 @@ public final class FloatingPointUtils {
 
     /**
      * Returns the given String as Integer, or null if it isn't an Integer.
+     *
+     * @param text Text to parse
+     * @return Integer or null
      */
     @Nullable
     public Integer parseInteger(final String text) {

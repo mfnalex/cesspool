@@ -10,13 +10,22 @@ import java.util.Objects;
  */
 public class Unit<A> {
 
+    /**
+     * Throws an exception if an immutable Tuple is modified
+     */
     protected void checkMutable() {
         if(!isMutable) throw new UnsupportedOperationException("This " + getClass().getSimpleName() + " is immutable");
     }
 
+    /**
+     * Whether this Tuple is mutable
+     */
     protected boolean isMutable = false;
 
-    @Nullable A first;
+    /**
+     * First element
+     */
+    protected @Nullable A first;
 
     /**
      * Creates a new mutable Unit with the given first element
@@ -36,6 +45,10 @@ public class Unit<A> {
         this.first = first;
     }
 
+    /**
+     * Gets the first element
+     * @return First element
+     */
     @Nullable
     public final A getFirst() {
         return first;

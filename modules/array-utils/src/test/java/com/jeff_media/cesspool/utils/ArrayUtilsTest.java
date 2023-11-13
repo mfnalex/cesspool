@@ -33,10 +33,10 @@ class ArrayUtilsTest {
 
     @Test
     void removeAtIndex() {
-        int[] arr = new int[] {0,1,2,3,4,5};
-        int[] arr_3 = new int[] {0,1,2,4,5};
-        int[] arr_0 = new int[] {1,2,3,4,5};
-        int[] arr_2_4 = new int[] {0,1,3,5};
+        Object[] arr = new Object[] {0,1,2,3,4,5};
+        Object[] arr_3 = new Object[] {0,1,2,4,5};
+        Object[] arr_0 = new Object[] {1,2,3,4,5};
+        Object[] arr_2_4 = new Object[] {0,1,3,5};
         assertArrayEquals(arr_3, ArrayUtils.removeAtIndex(arr, 3));
     }
 

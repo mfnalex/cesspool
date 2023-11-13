@@ -2,6 +2,9 @@ package com.jeff_media.cesspool.nms.generic;
 
 import org.bukkit.entity.Player;
 
+/**
+ * Represents a class that converts between Bukkit and NMS objects
+ */
 public interface NMSAdapter {
     /**
      * Gets the NMS version package, e.g. "v1_20_R1"

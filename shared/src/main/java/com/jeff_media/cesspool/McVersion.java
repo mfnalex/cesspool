@@ -7,9 +7,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 /**
- * Provides version comparing methods
+ * Represents comparable Minecraft versions.
  */
-
 public class McVersion implements Comparable<McVersion> {
 
     /**

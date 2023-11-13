@@ -1,6 +1,6 @@
 package com.jeff_media.cesspool.config;
 
-import com.jeff_media.cesspool.PapiReplacer;
+import com.jeff_media.cesspool.textformatting.PapiReplacer;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;

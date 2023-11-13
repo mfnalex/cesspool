@@ -1,20 +1,13 @@
-package com.jeff_media.cesspool;
+package com.jeff_media.cesspool.textformatter;
 
 
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.bukkit.Bukkit;
+
 import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.plugin.Plugin;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Methods related to color translation, placeholder and emoji application and more
@@ -57,10 +50,10 @@ public class LegacyTextFormatter {
         final Matcher matcher = PATTERN_HEX_GRADIENT.matcher(text);
         final StringBuffer sb = new StringBuffer();
         while (matcher.find()) {
-            final HexColor startColor = new HexColor(matcher.group(1));
-            final HexColor endColor = new HexColor(matcher.group(3));
+            final LegacyHexColor startColor = new LegacyHexColor(matcher.group(1));
+            final LegacyHexColor endColor = new LegacyHexColor(matcher.group(3));
             final String partText = matcher.group(2);
-            matcher.appendReplacement(sb, HexColor.applyGradient(partText, startColor, endColor));
+            matcher.appendReplacement(sb, LegacyHexColor.applyGradient(partText, startColor, endColor));
         }
         matcher.appendTail(sb);
         String result = sb.toString();
@@ -91,78 +84,6 @@ public class LegacyTextFormatter {
             sb.append("&").append(aChar);
         }
         return sb.toString();
-    }
-
-    /**
-     * Replaces Emojis, PlaceholderAPI placeholders and colors ({see {@link #color(String)})
-     *
-     * @param text   Text to translate
-     * @param player Player to apply placeholders for, or null
-     * @return Translated text
-     */
-    public static List<String> format(List<String> text, @Nullable final OfflinePlayer player) {
-        text = new ArrayList<>(text);
-        for (int i = 0; i < text.size(); i++) {
-            text.set(i, format(text.get(i), player));
-        }
-        return text;
-    }
-
-    /**
-     * Replaces placeholders in a list of Strings.
-     *
-     * @see #replaceInString(String, Map)
-     */
-    public List<String> replaceInString(final List<String> strings, final Map<String, String> placeholders) {
-        strings.replaceAll(string -> replaceInString(string, placeholders));
-        return strings;
-    }
-
-    /**
-     * Replaces placeholders in a String. Example:
-     * <pre>
-     * Map&lt;String,String> placeholders = new HashMap&lt;>();
-     * placeholders.put("{player}",player.getName());
-     * placeholders.put("{killer}",killer.getName());
-     * String result = replaceInString("{player} was killed by {killer}.",placeholders);
-     * </pre>
-     */
-    public String replaceInString(String string, final Map<String, String> placeholders) {
-        for (final Map.Entry<String, String> entry : placeholders.entrySet()) {
-            if (entry.getKey() == null || entry.getValue() == null) continue;
-            string = string.replace(entry.getKey(), entry.getValue());
-        }
-        return string;
-    }
-
-    /**
-     * Replaces placeholders in a list of Strings.
-     *
-     * @see #replaceInString(String, String...)
-     */
-    public List<String> replaceInString(final List<String> strings, final String... placeholders) {
-        strings.replaceAll(string -> replaceInString(string, placeholders));
-        return strings;
-    }
-
-    /**
-     * Replaces placeholders in a String. Example:
-     * <pre>
-     * String result = replaceInString("{name} is {age} years old.",
-     *      "{name}", "mfnalex",
-     *      "{age}","27"
-     * );
-     * </pre>
-     */
-    public String replaceInString(String string, final String... placeholders) {
-        if (placeholders.length % 2 != 0) {
-            throw new IllegalArgumentException("placeholders must have an even length");
-        }
-        for (int i = 0; i < placeholders.length; i += 2) {
-            if (placeholders[i] == null || placeholders[i + 1] == null) continue;
-            string = string.replace(placeholders[i], placeholders[i + 1]);
-        }
-        return string;
     }
 
 }

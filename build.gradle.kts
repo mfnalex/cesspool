@@ -18,12 +18,15 @@ dependencies {
     }
 }
 
-
 tasks.register<Javadoc>("allJavadoc") {
     description = "Generates javadoc for all projects"
     group = "documentation"
 
     rootProject.subprojects.forEach { subproject ->
+
+//        if(subproject.projectDir.name.contains("nms/versions"))
+//            return@forEach
+
         subproject.plugins.withId("java") {
             subproject.tasks.withType<Javadoc>().forEach { javadoc ->
                 source(javadoc.source)
@@ -33,8 +36,7 @@ tasks.register<Javadoc>("allJavadoc") {
     }
 }
 
-allprojects {
-    tasks.withType<FixJavadoc>().configureEach {
-        hideExternalLinksIcon.set(true)
-    }
+
+tasks.withType<FixJavadoc>().configureEach {
+    hideExternalLinksIcon.set(true)
 }

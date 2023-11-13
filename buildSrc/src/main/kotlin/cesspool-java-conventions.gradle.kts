@@ -1,3 +1,5 @@
+import org.apache.tools.ant.taskdefs.Java
+
 plugins {
     `java-library`
     `maven-publish`
@@ -58,4 +60,8 @@ publishing {
             from(components["java"])
         }
     }
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.encoding = "UTF-8"
 }

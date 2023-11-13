@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.LongSupplier;
 import java.util.stream.Collectors;
 
-import static com.jeff_media.cesspool.CesspoolUtils.notNull;
+import static com.jeff_media.cesspool.Validate.*;
 import static com.jeff_media.cesspool.CesspoolUtils.uuid;
 
 /**
@@ -68,7 +68,7 @@ public class Cooldown {
     }
 
     private static Object getUidOrNot(final @NotNull Object object) {
-        notNull(object, "object");
+        paramNotNull(object, "object");
         UUID uuid = uuid(object);
         if (uuid != null) {
             return uuid;

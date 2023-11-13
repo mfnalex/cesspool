@@ -12,7 +12,7 @@ import java.util.Spliterator;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import static com.jeff_media.cesspool.CesspoolUtils.notNull;
+import static com.jeff_media.cesspool.Validate.*;
 
 /**
  * A simple cache to access public static final fields of a class as if they were declared as an enum
@@ -30,10 +30,16 @@ public class ConstantsCache<T> implements Iterable<Constant<T>> {
     @NotNull
     private final Map<@NotNull String, @NotNull T> elements;
 
+    /**
+     * Creates a new ConstantsCache
+     * @param declaringClazz The class that declares the constants
+     * @param constantType The type of the constants
+     * @param predicate A predicate to filter the constants, or null to include all constants
+     */
     @SuppressWarnings("unchecked")
     public ConstantsCache(@NotNull Class<?> declaringClazz, Class<T> constantType, @Nullable Predicate<@NotNull T> predicate) {
-        this.declaringClazz = notNull(declaringClazz, "declaringClazz");
-        this.constantType = notNull(constantType, "constantType");
+        this.declaringClazz = paramNotNull(declaringClazz, "declaringClazz");
+        this.constantType = paramNotNull(constantType, "constantType");
         final Map<String, T> elements = new HashMap<>();
         for (Field field : this.declaringClazz.getDeclaredFields()) {
             if (this.constantType.isAssignableFrom(field.getType())) {
@@ -93,7 +99,7 @@ public class ConstantsCache<T> implements Iterable<Constant<T>> {
      */
     @Nullable
     public T valueOf(@NotNull String name) {
-        notNull(name, "name");
+        paramNotNull(name, "name");
         return elements.get(name);
     }
 

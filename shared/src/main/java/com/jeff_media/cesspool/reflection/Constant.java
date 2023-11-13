@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-import static com.jeff_media.cesspool.CesspoolUtils.notNull;
+import static com.jeff_media.cesspool.Validate.*;
 
 /**
  * A simple constant that has a name and a value
@@ -19,8 +19,8 @@ public class Constant<T> {
     private final T value;
 
     private Constant(@NotNull String name, @NotNull T value) {
-        this.name = notNull(name, "name");
-        this.value = notNull(value, "value");
+        this.name = paramNotNull(name, "name");
+        this.value = paramNotNull(value, "value");
     }
 
     @Override
@@ -39,6 +39,7 @@ public class Constant<T> {
     /**
      * Creates a new {@link Constant} with the given name and value
      *
+     * @param <T>   The type of the constant
      * @param name  The name
      * @param value The value
      * @return The {@link Constant}
@@ -48,11 +49,19 @@ public class Constant<T> {
     }
 
 
+    /**
+     * Gets the name of this constant
+     * @return The name of this constant
+     */
     @NotNull
     public String name() {
         return name;
     }
 
+    /**
+     * Gets the value of this constant
+     * @return The value of this constant
+     */
     @NotNull
     public T value() {
         return value;

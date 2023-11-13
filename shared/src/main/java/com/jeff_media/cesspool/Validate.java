@@ -2,26 +2,20 @@ package com.jeff_media.cesspool;
 
 
 import java.util.regex.Pattern;
+
+import com.jeff_media.cesspool.exceptions.ParameterCannotBeNullException;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+/**
+ * Validates arguments
+ */
 public final class Validate {
 
     private static final String DEFAULT_INCLUSIVE_BETWEEN_EX_MESSAGE = "The value %s is not in the specified inclusive range of %s to %s";
 
     private static final String DEFAULT_MATCHES_PATTERN_EX = "The string %s does not match the pattern %s";
-
-    @Contract("false, _ -> fail")
-    public static void isTrue(final boolean expression, @NotNull final String message) {
-        if (!expression) {
-            throw new IllegalArgumentException(message);
-        }
-    }
-
-    @Contract("false -> fail")
-    public static void isTrue(final boolean expression) {
-        throw new IllegalArgumentException();
-    }
 
     /**
      * <p>Validate that the specified argument object fall between the two
@@ -87,17 +81,28 @@ public final class Validate {
         }
     }
 
-    @Contract(value = "null -> fail", pure = true)
-    public static void notNull(final Object object) {
-        if (object == null) {
-            throw new IllegalArgumentException("Object cannot be null");
-        }
-    }
+//    @Contract(value = "null, _ -> fail", pure = true)
+//    public static <T> T notNull(@Nullable final T object, String name) {
+//        if (object == null) {
+//            throw new NullPointerException(name + " cannot be null");
+//        }
+//        return object;
+//    }
 
-    @Contract(value = "null, _ -> fail", pure = true)
-    public static void notNull(final Object object, final String message) {
-        if (object == null) {
-            throw new IllegalArgumentException(message);
+    /**
+     * Throws a NullPointerException if the object is null
+     * @param object Object
+     * @param name Name of the object
+     * @return Object
+     * @param <T> Type of the object
+     */
+    @NotNull
+    @Contract(value = "null, _ -> fail; _, _ -> param1", pure = true)
+    public static  <T> T paramNotNull(@Nullable T object, String name) throws ParameterCannotBeNullException {
+        if(object != null) {
+            return object;
+        } else {
+            throw new ParameterCannotBeNullException(name);
         }
     }
 

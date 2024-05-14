@@ -60,6 +60,15 @@ publishing {
             from(components["java"])
         }
     }
+    repositories {
+        maven {
+            url = uri("https://repo.jeff-media.com/public")
+            credentials {
+                username = project.property("jeffMediaPublicUser") as String
+                password = project.property("jeffMediaPublicPassword") as String
+            }
+        }
+    }
 }
 
 tasks.withType<JavaCompile>().configureEach {
